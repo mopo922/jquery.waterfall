@@ -88,6 +88,7 @@ $(function(){
 
 * `gap`(int): distance between neighboring objects in pixels.  
 * `gridWidth`(array): Grid system, column number is determined by device width, for example
+* `animate` (bool): Turn off animation.
 
 ##### 5-column 
 *  `gridWidth: [0,400,600,800,1200]`  
