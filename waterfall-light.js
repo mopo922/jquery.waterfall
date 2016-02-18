@@ -17,6 +17,7 @@
 			col : false,	// grid number 
 			gap : 10,
 			gridWidth : [0,400,600,800,1200],
+			animate : true,
 			refresh: 500,
 			timer : false,
 			scrollbottom : false
@@ -130,26 +131,28 @@
 			left.push(j*cwidth+j*gap);
 			g_option[id].top.push(0);
 		}
-		t.children().css({
-			position:'absolute',
-			left: (w/2-cwidth/2)+'px',
-			top: t.scrollTop(),
-			transition: 'left ' + g_option[id].refresh + 'ms ease-in-out,' +
-						'top ' + g_option[id].refresh + 'ms ease-in-out,' +
-						'opacity ' + g_option[id].refresh + 'ms ease-in-out'
-			}).each(function() {
-				var ic = getPolesCol(id,false);
-				$(this).css({ width: cwidth+'px', left: left[ic]+'px', top : g_option[id].top[ic]+'px',opacity:'1' });
-				g_option[id].top[ic]+=$(this)[0].offsetHeight+gap;
-			});
-			//set the waterfall box height
-            t.css("height",g_option[id].top[getPolesCol(id,true)] + "px");
-			if(scrollbottom)
-				if(scrollbottom.endele)
-					scrollbottom.endele
-						.addClass('endele')
-						.text(scrollbottom.endtxt)
-						.css('top', g_option[id].top[getPolesCol(id,true)]+"px");
+		if(g_option[id].animate){
+			t.children().css({
+				position:'absolute',
+				left: (w/2-cwidth/2)+'px',
+				top: t.scrollTop(),
+				transition: 'left ' + g_option[id].refresh + 'ms ease-in-out,' +
+							'top ' + g_option[id].refresh + 'ms ease-in-out,' +
+							'opacity ' + g_option[id].refresh + 'ms ease-in-out'
+				}).each(function() {
+					var ic = getPolesCol(id,false);
+					$(this).css({ width: cwidth+'px', left: left[ic]+'px', top : g_option[id].top[ic]+'px',opacity:'1' });
+					g_option[id].top[ic]+=$(this)[0].offsetHeight+gap;
+				});
+				//set the waterfall box height
+			t.css("height",g_option[id].top[getPolesCol(id,true)] + "px");
+		}
+		if(scrollbottom)
+			if(scrollbottom.endele)
+				scrollbottom.endele
+					.addClass('endele')
+					.text(scrollbottom.endtxt)
+					.css('top', g_option[id].top[getPolesCol(id,true)]+"px");
 	}
 
 	// detect screen width change , resort cards
