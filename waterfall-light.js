@@ -46,7 +46,7 @@
 			if(g_option[id].scrollbottom){
 				g_option[id].scrollbottom = $.extend({
 					ele : this.parent(),
-					endele: $('<div>').css({width:'100%',textAlign:'center',position:'absolute'}),
+					endele: $('<div>').css({width:'100%',textAlign:'center',position:g_option[id].animate ? 'absolute' : 'relative'}),
 					endtxt: 'No More Data',
 					gap: 300
 				},g_option[id].scrollbottom);
